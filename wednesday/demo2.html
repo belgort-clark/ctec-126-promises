@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Demo 2</title>
+    </head>
+
+    <body>
+        <script>
+            function sing(song) {
+                return new Promise((resolve, reject) => {
+                    if (song == '') {
+                        reject('No song')
+                    } else {
+                        resolve()
+                    }
+                })
+            }
+
+            function sayWhat() {
+                console.log('I sang for you')
+            }
+
+            sing('Free Bird')
+                .then(sayWhat)
+                .catch(err => {
+                    console.log(err)
+                })
+
+        </script>
+    </body>
+
+</html>

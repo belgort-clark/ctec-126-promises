@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>NYT</title>
+    </head>
+
+    <body>
+        <select id="section">
+            <option value="home">Home</option>
+            <option value="arts">Art</option>
+            <option value="technology">Technology</option>
+        </select>
+        <button id="refresh">Refresh</button>
+        <div id="stories"></div>
+        <script>
+            async function callAPI() {
+                // clear out stories
+                // show image
+                try {
+                    const res = await fetch(`http://api.nytimes.com/svc/topstories/v2/${section.value}.json?api-key=8TOn8DyRvV0DNF7IMRGnVZpSWiVBlGYN`)
+                    const data = await res.json()
+                    console.log(data)
+                } catch (e) {
+                    alert('Something went wrong')
+                }
+                // hide the image
+
+            }
+
+            function displayStories(data) {
+
+            }
+
+            function callAPI2() {
+                fetch(`http://api.nytimes.com/svc/topstories/v2/${section.value}.json?api-key=8TOn8DyRvV0DNF7IMRGnVZpSWiVBlGYN`)
+                    .then(res => res.json())
+                    .then(data => {
+                        console.log(data)
+                    })
+                    .catch(err => {
+                        console.log('oh shit')
+                    })
+            }
+
+            const section = document.querySelector('#section')
+            const refreshBtn = document.querySelector('#refresh')
+
+            section.addEventListener('change', () => {
+                callAPI()
+            })
+
+            refreshBtn.addEventListener('click', () => {
+                alert('I am refreshing')
+                callAPI()
+            })
+
+            callAPI()
+
+            // fetch('http://api.nytimes.com/svc/topstories/v2/dining.json?api-key=8TOn8DyRvV0DNF7IMRGnVZpSWiVBlGYN')
+            //     .then(resp => resp.json())
+        </script>
+    </body>
+
+</html>

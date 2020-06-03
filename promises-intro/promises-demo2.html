@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Promises Demo 2</title>
+    </head>
+
+    <body>
+        <script>
+            // mimic blog posts on a server
+            // not the use of setTimeout
+            const posts = [
+                { title: 'Post 1', body: 'This is Post 1' },
+                { title: 'Post 2', body: 'This is Post 2' }
+            ]
+
+            function getPosts() {
+                setTimeout(() => {
+                    let output = ''
+                    posts.forEach((post, index) => {
+                        output += `<li>${post.title}`
+                    })
+                    document.body.innerHTML = output
+                }, 1000)
+            }
+
+            function createPost(post, callback) {
+                setTimeout(() => {
+                    posts.push(post)
+                    callback()
+                }, 2000);
+            }
+
+            // getPosts()
+            createPost({ title: "Post 3", body: "This is Post 3" }, getPosts)
+        </script>
+    </body>
+
+</html>
